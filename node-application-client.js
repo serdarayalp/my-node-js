@@ -15,4 +15,4 @@ fs.readFile('input.txt', function (err, data) {
 });
 
 
-console.log("Program Ended");
+console.log("Program beendet...");
