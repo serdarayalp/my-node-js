@@ -284,3 +284,91 @@ fs.open('input.txt', 'r+', function (err, fd) {
         });
     });
 });
+
+
+/*
+Delete a File
+    fs.unlink(path, callback)
+
+Parameters
+
+    path − This is the file name including path.
+    callback − This is the callback function No arguments other than a possible 
+        exception are given to the completion callback.
+*/
+
+
+console.log("Going to delete an existing file");
+fs.unlink('input.txt.gz', function (err) {
+    if (err) {
+        return console.error(err);
+    }
+    console.log("File deleted successfully!");
+});
+
+/*
+Create a Directory
+    fs.mkdir(path[, mode], callback)
+
+Parameters
+    path − This is the directory name including path.
+    mode − This is the directory permission to be set. Defaults to 0777.
+    callback − This is the callback function No arguments other than a possible exception are given 
+        to the completion callback.
+*/
+
+console.log("Going to create directory /tmp/test");
+fs.mkdir('test', function (err) {
+    if (err) {
+        return console.error(err);
+    }
+    console.log("Directory created successfully!");
+});
+
+/*
+Read a Directory
+    fs.readdir(path, callback)
+
+Parameters
+    path − This is the directory name including path.
+    callback − This is the callback function which gets two arguments (err, files) where files 
+        is an array of the names of the files in the directory excluding '.' and '..'.
+*/
+
+console.log("Going to read directory /tmp");
+fs.readdir("test", function (err, files) {
+    if (err) {
+        return console.error(err);
+    }
+    files.forEach(function (file) {
+        console.log(file);
+    });
+});
+
+
+/*
+Remove a Directory
+    fs.rmdir(path, callback)
+
+Parameters
+    path − This is the directory name including path.
+    callback − This is the callback function No arguments other than a possible exception are 
+        given to the completion callback.
+*/
+
+console.log("Going to delete directory /tmp/test");
+fs.rmdir("test2", function (err) {
+    if (err) {
+        return console.error(err);
+    }
+
+    console.log("Going to read directory test2");
+    fs.readdir("test2", function (err, files) {
+        if (err) {
+            return console.error(err);
+        }
+        files.forEach(function (file) {
+            console.log(file);
+        });
+    });
+});
