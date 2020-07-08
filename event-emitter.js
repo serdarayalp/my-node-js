@@ -81,17 +81,17 @@ the listener may not yet have been removed from the array of listeners for the e
 */
 
 
-var events = require('events');
+let events = require('events');
 
-var eventEmitter = new events.EventEmitter();
+let eventEmitter = new events.EventEmitter();
 
 // listener #1
-var listner1 = function listner1() {
+let listner1 = function listner1() {
     console.log('listner1 executed.');
 }
 
 // listener #2
-var listner2 = function listner2() {
+let listner2 = function listner2() {
     console.log('listner2 executed.');
 }
 
@@ -101,7 +101,7 @@ eventEmitter.addListener('connection', listner1);
 // Bind the connection event with the listner2 function
 eventEmitter.on('connection', listner2);
 
-var eventListeners = events.EventEmitter.listenerCount(eventEmitter, 'connection');
+let eventListeners = events.EventEmitter.listenerCount(eventEmitter, 'connection');
 console.log(eventListeners + " Listner(s) listening to 'connection' event");
 
 // Fire the connection event 
