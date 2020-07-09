@@ -266,7 +266,7 @@ let server = new net.Server(function (connection) {
         console.log('client disconnected');
     });
 
-    connection.write('Hello from Server...');
+    connection.write('Hello from Server...\r\n');
 
     // connection.log(server.address);
 
