@@ -51,11 +51,14 @@ Returns true if the input is a version 6 IP address, otherwise returns false.
 /*
 Class - net.Server
     This class is used to create a TCP or local server.
+    z.B.: let server = new net.Server(function (connection) {...});
 
 Methods
 1: server.listen(port[, host][, backlog][, callback])
 Begin accepting connections on the specified port and host. If the host is omitted, the server will
 accept connections directed to any IPv4 address (INADDR_ANY). A port value of zero will assign a random port.
+
+    backlog: Specifies the max length of the queue of pending connections. Default 511
 
 2: server.listen(path[, callback])
 Start a local socket server listening for connections on the given path.
@@ -116,6 +119,16 @@ Class - net.Socket:
 This object is an abstraction of a TCP or local socket. net.Socket instances implement a duplex
 Stream interface. They can be created by the user and used as a client (with connect()) or they can be
 created by Node and passed to the user through the 'connection' event of a server.
+
+
+Socket: 
+    Ein Socket (von engl. Sockel, Steckverbindung oder Steckdose) ist ein vom Betriebssystem 
+    bereitgestelltes Objekt, das als Kommunikationsendpunkt dient. Ein Programm verwendet Sockets, 
+    um Daten mit anderen Programmen auszutauschen. Das andere Programm kann sich dabei auf demselben 
+    Computer (Interprozesskommunikation) oder einem anderen, via Netzwerk erreichbaren Computer befinden. 
+    Die Kommunikation über Sockets erfolgt in der Regel bidirektional, das heißt, über das Socket können 
+    Daten sowohl empfangen als auch gesendet werden. 
+
 
 
 Events
@@ -242,21 +255,31 @@ socket left (the default behavior). If the socket is refd, then calling ref agai
 */
 
 
-var net = require('net');
+let net = require('net');
 
-var server = net.createServer(function (connection) {
-    
+let server = new net.Server(function (connection) {
+    // let server = net.createServer(function (connection) {
+
     console.log('client connected');
 
     connection.on('end', function () {
         console.log('client disconnected');
     });
 
-    connection.write('Hello World!\r\n');
+    connection.write('Hello from Server...');
 
+    // connection.log(server.address);
+
+    /*
+    it reads from the incoming stream of the TCP connection and writes that back to the outgoing 
+    stream which would essentially echo whatever was sent to the server back to the sender. 
+    So, if you sent "abc" to this server, you would get back as the response the same "abc" 
+    that you sent. This can only work if the connection object is both a readable and a writable 
+    stream.
+    */
     connection.pipe(connection);
 });
 
-server.listen(8081, function () {
+server.listen(8081, "localhost", function () {
     console.log('server is listening');
 });

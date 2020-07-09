@@ -1,6 +1,8 @@
-var net = require('net');
+let net = require('net');
 
-var client = net.connect({ port: 8081 }, function () {
+// let client = net.connect({ port: 8081 }, function () {
+// let client = net.createConnection({ port: 8081 }, function () {
+let client = net.createConnection(8081, "localhost", function () {
     console.log('connected to server!');
 });
 
