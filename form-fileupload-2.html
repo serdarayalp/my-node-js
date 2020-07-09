@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Das ist ein Test...</title>
+</head>
+
+<body>
+
+    <!--  SINGLE FILE -->
+    <form action="/uploadfile" enctype="multipart/form-data" method="POST">
+        <table>
+            <tr>
+                <td>Dateiauswahl: </td>
+                <td>
+                    <input type="file" name="myFile" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Upload a file" />
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <br/><br/><br/>
+
+    <!-- MULTIPLE FILES -->
+    <form action="/uploadmultiple" enctype="multipart/form-data" method="POST">
+        <table>
+            <tr>
+                <td>Select images: </td>
+                <td>
+                    <input type="file" name="myFiles" multiple>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Upload your files" />
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</body>
+
+</html>
