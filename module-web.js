@@ -1,5 +1,5 @@
 var http = require('http');
-// var dt = require('./nodeModule');
+// var dt = require('./module-web-required');
 var url = require('url')
 
 // Server-Objekt erstellen
